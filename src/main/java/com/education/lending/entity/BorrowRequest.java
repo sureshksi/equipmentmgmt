@@ -23,8 +23,8 @@ public class BorrowRequest {
     @GeneratedValue 
     private Long id;
     
-    private LocalDate fromDate;
-    private LocalDate toDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     
     private String requestedby;
 

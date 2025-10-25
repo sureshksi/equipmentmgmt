@@ -11,6 +11,7 @@ public interface UserService {
 
 	public User getUserByLogin(String lodinId);
 	public User getUserByEmail(String email);
-	public void updateUser(User user);
+	public User updateUser(User user);
+	public User createUser(User user);
 	
 }
