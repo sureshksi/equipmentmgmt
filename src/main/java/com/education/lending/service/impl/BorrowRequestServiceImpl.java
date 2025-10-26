@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.education.lending.entity.BorrowRequest;
+import com.education.lending.entity.Equipment;
 import com.education.lending.entity.enums.RequestStatus;
 import com.education.lending.repository.BorrowRequestRepository;
 import com.education.lending.repository.EquipmentRepository;
@@ -65,13 +66,39 @@ public class BorrowRequestServiceImpl implements BorrowService {
 	@Override
 	public void updateStatusById(RequestStatus status, Integer requestId) {
 		borrowRepository.updateStatusById(status, requestId);
-		if("RETURNED".equalsIgnoreCase(status.name())) {
-			equipmentRepository.returnRequest(requestId);
-			log.info("Equipment is returned");
-		}else if("APPROVED".equalsIgnoreCase(status.name())) {
-			equipmentRepository.borrowRequest(requestId);
-			log.info("Equipment is borrowed");
+		BorrowRequest borrowStatus=this.getRequestById(requestId);
+		if(borrowStatus!= null) {
+			Equipment equip =  borrowStatus.getEquipment();
+			
+			if("RETURNED".equalsIgnoreCase(status.name())) {
+				if(equip.getQuantity()==0) {
+					equip.setQuantity(1);
+					equip.setBorrowed(equip.getBorrowed()-1);
+					equip.setAvailable(true);
+				}else{
+					equip.setQuantity(equip.getQuantity()+1);
+					equip.setAvailable(true);
+					equip.setBorrowed(equip.getBorrowed()-1);
+				}
+				equipmentRepository.save(equip);
+				//equipmentRepository.returnRequest(borrowStatus.getEquipment().);
+				log.info("Equipment is returned");
+			}else if("APPROVED".equalsIgnoreCase(status.name())) {
+				if(equip.getQuantity()==0) {
+					equip.setQuantity(0);
+					equip.setBorrowed(equip.getBorrowed());
+					equip.setAvailable(false);
+				}else{
+					equip.setQuantity(equip.getQuantity()-1);
+					equip.setAvailable(true);
+					equip.setBorrowed(equip.getBorrowed()+1);
+				}
+				equipmentRepository.save(equip);
+				//equipmentRepository.borrowRequest(requestId);
+				log.info("Equipment is borrowed");
+			}
 		}
+		
 	}
 
 }
