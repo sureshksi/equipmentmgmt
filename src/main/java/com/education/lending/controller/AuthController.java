@@ -1,6 +1,7 @@
 package com.education.lending.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -63,7 +64,7 @@ public class AuthController {
 			log.info("Token ====" + token);
 			return ResponseEntity.ok(new AuthResponse(token));
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("Authentication failed");
+			return new ResponseEntity<Object>("Authentication failed", HttpStatus.UNAUTHORIZED);
 		}
     }
     
