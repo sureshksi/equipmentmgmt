@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AuthController {
 
+	//private PasswordEncoder passwordEncoder;
     @Autowired
     private AuthenticationManager authManager;
 
@@ -87,7 +89,8 @@ public class AuthController {
     	try {
     		User user = mapToUser(request);
     		userService.createUser(user);
-    		return ResponseEntity.ok().body(user.toString());
+    		SignupRequest response =this.mapToSignupRequest(user);
+    		return ResponseEntity.ok().body(response.toJson(response));
     	} catch (Exception e) {
 			return ResponseEntity.badRequest().body("User signup failed");
 		}
@@ -99,11 +102,22 @@ public class AuthController {
     	user.setLoginId(signUpRequest.getLoginId());
     	user.setMobile(signUpRequest.getMobile());
     	user.setPassword(signUpRequest.getPassword());
+    	//String hashedPwd = passwordEncoder.encode(signUpRequest.getPassword());
+    	//user.setPassword(hashedPwd);
     	user.setName(signUpRequest.getName());
     	if(signUpRequest.getRole() !=null && signUpRequest.getRole().equalsIgnoreCase(Role.STAFF.name()))
     		user.setRole(Role.STAFF);
     	else
     		user.setRole(Role.USER);
     	return user;
+    }
+    private SignupRequest mapToSignupRequest(User user) {
+    	SignupRequest signUpRequest = new SignupRequest();
+    	signUpRequest.setEmail(user.getEmail());
+    	signUpRequest.setLoginId(user.getLoginId());
+    	signUpRequest.setMobile(user.getMobile());
+    	signUpRequest.setRole(user.getRole().name());
+    	
+    	return signUpRequest;
     }
 }

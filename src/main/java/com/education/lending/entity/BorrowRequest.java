@@ -8,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -20,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Table(name="request")
 public class BorrowRequest {
     @Id 
-    @GeneratedValue 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private LocalDate startDate;
@@ -31,8 +33,18 @@ public class BorrowRequest {
     @Enumerated(EnumType.STRING)
     private RequestStatus status; // PENDING, APPROVED, REJECTED, RETURNED
     
-    @ManyToOne private User user;
-    @ManyToOne private Equipment equipment;
+   // @ManyToOne private User user;
+    //@ManyToOne private Equipment equipment;
 
-}
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "equipmentid")
+    private Equipment equipment;
+
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "userid")
+    private User user;
+
+    }
 
