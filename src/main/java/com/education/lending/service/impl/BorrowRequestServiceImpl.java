@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.education.lending.entity.BorrowRequest;
+import com.education.lending.entity.enums.RequestStatus;
 import com.education.lending.repository.BorrowRequestRepository;
 import com.education.lending.service.BorrowService;
 
@@ -51,8 +52,9 @@ public class BorrowRequestServiceImpl implements BorrowService {
 		borrowRepository.deleteById(requestId);
 	}
 
+	@Transactional
 	@Override
-	public void updateStatusById(String status, Integer requestId) {
+	public void updateStatusById(RequestStatus status, Integer requestId) {
 		borrowRepository.updateStatusById(status, requestId);
 	}
 

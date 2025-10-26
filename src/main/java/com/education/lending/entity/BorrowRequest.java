@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.education.lending.entity.enums.RequestStatus;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,7 +26,9 @@ public class BorrowRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(name="startdate")
     private LocalDate startDate;
+    @Column(name="enddate")
     private LocalDate endDate;
     
     private String requestedby;

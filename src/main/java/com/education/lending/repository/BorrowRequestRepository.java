@@ -28,9 +28,9 @@ public interface BorrowRequestRepository extends JpaRepository<BorrowRequest, In
 
 	List<BorrowRequest> findByStatus(String status);
 	
-	
+	//@Query(value = "UPDATE request SET status = :status WHERE id = :requestId", nativeQuery = true)
 	@Modifying
 	@Query("UPDATE BorrowRequest i SET i.status = :status WHERE i.id = :requestId")
-	void updateStatusById(@Param("status") String status, @Param("requestId") Integer requestId);
+	void updateStatusById(@Param("status") RequestStatus status, @Param("requestId") Integer requestId);
 
 }

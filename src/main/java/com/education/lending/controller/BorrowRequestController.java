@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.education.lending.entity.BorrowRequest;
+import com.education.lending.entity.enums.RequestStatus;
 import com.education.lending.service.BorrowService;
 
 /**Borrow request API controller
@@ -70,7 +71,7 @@ public class BorrowRequestController {
     @PatchMapping("/updatestatus")
     public ResponseEntity<?> updateStatus(@RequestParam String status, @RequestParam Integer requestId) {
     	if(requestId!=0) {
-	    	borrowService.updateStatusById(status, requestId);
+	    	borrowService.updateStatusById(RequestStatus.fromString(status), requestId);
 	    	return ResponseEntity.ok("Update status successfully");
     	} else {
     		return new ResponseEntity<Object>("Update status request failed", HttpStatus.BAD_REQUEST);
