@@ -39,9 +39,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     	log.info("loadUserByUsername ==="+username);
        if (user != null) {
             return new User(user.getLoginId(), user.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().name())));
-        }else {
+        } else {
         	throw new UsernameNotFoundException("User not found");
         }
     }
-
 }

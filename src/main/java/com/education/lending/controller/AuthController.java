@@ -8,7 +8,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,9 +59,10 @@ public class AuthController {
 			authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword()));
 			log.info("Authetnication success");
 			final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUserName());
+			User user = userService.getUserByLogin(request.getUserName());
 			final String token = jwtUtil.generateToken(userDetails);
 			log.info("Token ====" + token);
-			return ResponseEntity.ok(new AuthResponse(token));
+			return ResponseEntity.ok(new AuthResponse(token, user));
 		} catch (Exception e) {
 			return new ResponseEntity<Object>("Authentication failed", HttpStatus.UNAUTHORIZED);
 		}

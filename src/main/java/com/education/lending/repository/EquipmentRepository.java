@@ -18,6 +18,6 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
 
 	List<Equipment> findByCategoryContainingIgnoreCase(String category);
 
-	@Query("select e.category from Equipment as e")
+	@Query("select DISTINCT e.category from Equipment as e")
 	List<String> findByCategory();
 }
