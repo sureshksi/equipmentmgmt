@@ -26,5 +26,6 @@ public class Equipment {
     private String conditiontype;
     private Integer quantity;
     private Boolean available;
+    private Integer borrowed;
 }
 

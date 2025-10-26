@@ -15,6 +15,7 @@ public class AuthResponse {
     private String role;
     private String name;
     private String email;
+    private Integer id;
 
     public AuthResponse(String token, User user) {
     	this.token = token;
@@ -22,6 +23,7 @@ public class AuthResponse {
         this.role=user.getRole().name();
         this.name=user.getName();
         this.email=user.getEmail();
+        this.id=user.getId();
     }
     public AuthResponse(String token) {
         this.token = token;
