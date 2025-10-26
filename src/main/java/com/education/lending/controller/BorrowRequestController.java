@@ -77,4 +77,10 @@ public class BorrowRequestController {
     		return new ResponseEntity<Object>("Update status request failed", HttpStatus.BAD_REQUEST);
     	}
     }
+    
+	@GetMapping("/user/{id}")
+    public ResponseEntity<?> getRequestsByUserId(@PathVariable Integer userId) {
+        List<BorrowRequest> request = borrowService.getRequestByUser(userId);
+         return ResponseEntity.ok(request);
+    }
 }

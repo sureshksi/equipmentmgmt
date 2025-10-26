@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.education.lending.entity.BorrowRequest;
 import com.education.lending.entity.Equipment;
+import com.education.lending.entity.User;
 import com.education.lending.entity.enums.RequestStatus;
 
 /**Repository for Request
@@ -32,5 +33,13 @@ public interface BorrowRequestRepository extends JpaRepository<BorrowRequest, In
 	@Modifying
 	@Query("UPDATE BorrowRequest i SET i.status = :status WHERE i.id = :requestId")
 	void updateStatusById(@Param("status") RequestStatus status, @Param("requestId") Integer requestId);
+	
+//	@Query("SELECT b FROM BorrowRequest b WHERE b.user = :userId AND b.status in(PENDING, APPROVED)")
+//	List<BorrowRequest> findRequestsByUserId(@Param("userId") User userId);
+	
+	@Query("SELECT b FROM BorrowRequest b WHERE b.user = :user AND b.status IN (:statuses)")
+	List<BorrowRequest> findRequestsByUserAndStatuses(
+	        @Param("user") User user,  @Param("statuses") List<RequestStatus> statuses);
+
 
 }

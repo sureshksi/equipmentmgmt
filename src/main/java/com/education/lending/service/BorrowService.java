@@ -13,4 +13,5 @@ public interface BorrowService {
 	public List<BorrowRequest> getAllRequests();
 	public void deleteRequestById(Integer requestId);
 	public void updateStatusById(RequestStatus status, Integer requestId);
+	public List<BorrowRequest> getRequestByUser(Integer userId);
 }
