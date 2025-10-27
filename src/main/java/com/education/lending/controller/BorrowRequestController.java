@@ -78,7 +78,7 @@ public class BorrowRequestController {
     	}
     }
     
-	@GetMapping("/user/{id}")
+	@GetMapping("/user/{userId}")
     public ResponseEntity<?> getRequestsByUserId(@PathVariable Integer userId) {
         List<BorrowRequest> request = borrowService.getRequestByUser(userId);
          return ResponseEntity.ok(request);
