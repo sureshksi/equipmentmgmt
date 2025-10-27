@@ -54,7 +54,7 @@ public class SecurityConfig {
 						.permitAll().requestMatchers("/api/v1/equipment/**")
 						.hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
 						.requestMatchers("/api/v1/borrowrequest/**")
-						.hasAnyAuthority(Role.USER.name(), Role.ADMIN.name()).anyRequest().authenticated())
+						.hasAnyAuthority(Role.USER.name(), Role.ADMIN.name(), Role.STAFF.name()).anyRequest().authenticated())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
