@@ -1,36 +1,59 @@
 School Equipment Lending Platform
 School Equipment Lending Platform that allows: • Students and teachers to request or borrow equipment • Lab assistants/admins to approve, issue, and track items • Administrators to monitor usage and availability
 
-equipment-lending-system/
+equipment-lending-service
 │
-├── controller/
-│   ├── AuthController.java
-│   ├── EquipmentController.java
-│   ├── RequestController.java
+├── src/main/java
+│   └── com.education.lending
+│       ├── EquipmentLendingSystemService.java
+│       │
+│       ├── config
+│       │   ├── CorsConfig.java
+│       │   ├── OpenAPIConfig.java
+│       │   └── SecurityConfig.java
+│       │
+│       ├── controller
+│       │   ├── AuthController.java
+│       │   ├── BorrowRequestController.java
+│       │   └── EquipmentController.java
+│       │
+│       ├── entity
+│       │   ├── BorrowRequest.java
+│       │   ├── Equipment.java
+│       │   └── User.java
+│       │
+│       ├── entity.enums
+│       │   ├── RequestStatus.java
+│       │   └── Role.java
+│       │
+│       ├── pojo
+│       │   ├── AuthRequest.java
+│       │   ├── AuthResponse.java
+│       │   └── SignupRequest.java
+│       │
+│       ├── repository
+│       │   ├── BorrowRequestRepository.java
+│       │   ├── EquipmentRepository.java
+│       │   └── UserRepository.java
+│       │
+│       ├── security
+│       │   ├── CustomUserDetailsService.java
+│       │   ├── JwtAuthenticationFilter.java
+│       │   ├── JwtAuthEntryPoint.java
+│       │   └── JwtUtil.java
+│       │
+│       ├── service
+│       │   ├── BorrowService.java
+│       │   ├── EquipmentService.java
+│       │   └── UserService.java
+│       │
+│       └── service.impl
+│           ├── BorrowRequestServiceImpl.java
+│           ├── EquipmentServiceImpl.java
+│           └── UserServiceImpl.java
 │
-├── model/
-│   ├── User.java
-│   ├── Equipment.java
-│   ├── BorrowRequest.java
-│   ├── enums/Role.java
-│   └── enums/RequestStatus.java
+├── src/main/resources
+│   └── application.properties
 │
-├── repository/
-│   ├── UserRepository.java
-│   ├── EquipmentRepository.java
-│   ├── BorrowRequestRepository.java
-│
-├── service/
-│   ├── AuthService.java
-│   ├── EquipmentService.java
-│   ├── BorrowService.java
-│
-├── dto/
-│   ├── AuthDTO.java
-│   ├── EquipmentDTO.java
-│   ├── BorrowRequestDTO.java
-│
-├── config/
-│   ├── WebSecurityConfig.java
-│
-├── EquipmentLendingSystemApplication.java
+├── JRE System Library [JavaSE-17]
+
