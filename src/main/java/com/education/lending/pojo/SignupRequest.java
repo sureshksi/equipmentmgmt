@@ -1,6 +1,5 @@
 package com.education.lending.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 public class SignupRequest {
 	private String name;
     private String email;
-    @JsonIgnore
     private String password;
     private String mobile;
     private String loginId;

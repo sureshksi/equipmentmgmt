@@ -68,7 +68,7 @@ public class AuthController {
 		}
     }
     
-	@GetMapping("/logout")
+    @PostMapping("/logout")
 	public ResponseEntity<?> logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		log.info("Entered into logoutPage method");
 		try {
@@ -118,6 +118,7 @@ public class AuthController {
     	signUpRequest.setLoginId(user.getLoginId());
     	signUpRequest.setMobile(user.getMobile());
     	signUpRequest.setRole(user.getRole().name());
+    	signUpRequest.setName(user.getName());
     	
     	return signUpRequest;
     }
