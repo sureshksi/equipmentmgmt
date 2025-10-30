@@ -1,6 +1,6 @@
 package com.education.lending.entity;
 
-import com.education.lending.entity.enums.Role;
+import com.education.lending.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;

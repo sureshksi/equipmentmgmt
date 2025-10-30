@@ -2,7 +2,7 @@ package com.education.lending.entity;
 
 import java.time.LocalDate;
 
-import com.education.lending.entity.enums.RequestStatus;
+import com.education.lending.enums.RequestStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

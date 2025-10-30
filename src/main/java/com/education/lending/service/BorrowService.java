@@ -3,7 +3,7 @@ package com.education.lending.service;
 import java.util.List;
 
 import com.education.lending.entity.BorrowRequest;
-import com.education.lending.entity.enums.RequestStatus;
+import com.education.lending.enums.RequestStatus;
 
 public interface BorrowService {
 

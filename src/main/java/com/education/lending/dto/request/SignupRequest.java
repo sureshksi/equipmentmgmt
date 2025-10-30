@@ -1,4 +1,4 @@
-package com.education.lending.pojo;
+package com.education.lending.dto.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

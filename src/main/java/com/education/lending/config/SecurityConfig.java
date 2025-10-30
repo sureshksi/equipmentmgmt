@@ -21,7 +21,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.education.lending.entity.enums.Role;
+import com.education.lending.enums.Role;
 import com.education.lending.security.JwtAuthEntryPoint;
 import com.education.lending.security.JwtAuthenticationFilter;
 

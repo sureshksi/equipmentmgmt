@@ -27,5 +27,7 @@ public class Equipment {
     private Integer quantity;
     private Boolean available;
     private Integer borrowed;
+    
+    
 }
 

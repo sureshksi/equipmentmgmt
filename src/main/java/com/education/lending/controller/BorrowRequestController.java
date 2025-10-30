@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.education.lending.entity.BorrowRequest;
-import com.education.lending.entity.enums.RequestStatus;
+import com.education.lending.enums.RequestStatus;
 import com.education.lending.service.BorrowService;
 
 /**Borrow request API controller

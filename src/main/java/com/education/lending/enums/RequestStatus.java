@@ -1,4 +1,4 @@
-package com.education.lending.entity.enums;
+package com.education.lending.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

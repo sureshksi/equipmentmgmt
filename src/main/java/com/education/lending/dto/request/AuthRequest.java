@@ -1,4 +1,4 @@
-package com.education.lending.pojo;
+package com.education.lending.dto.request;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

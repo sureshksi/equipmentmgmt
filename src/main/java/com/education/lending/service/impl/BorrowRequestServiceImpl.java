@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.education.lending.entity.BorrowRequest;
 import com.education.lending.entity.Equipment;
 import com.education.lending.entity.User;
-import com.education.lending.entity.enums.RequestStatus;
+import com.education.lending.enums.RequestStatus;
 import com.education.lending.repository.BorrowRequestRepository;
 import com.education.lending.repository.EquipmentRepository;
 import com.education.lending.service.BorrowService;

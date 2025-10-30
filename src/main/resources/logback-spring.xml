@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <!-- =======================
+         1. SPRING PROFILES SUPPORT
+    ======================= -->
+    <springProperty scope="context" name="springAppName" source="spring.application.name" defaultValue="equipment-lending-service"/>
+    <springProperty scope="context" name="LOG_PATH" source="LOG_PATH" defaultValue="./logs"/>
+
+    <!-- =======================
+         2. PATTERN FORMATTER
+    ======================= -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- =======================
+         3. APPENDERS
+    ======================= -->
+
+    <!-- Console Output -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- File Output (Rolling) -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${springAppName}.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Roll logs daily and keep 30 days -->
+            <fileNamePattern>${LOG_PATH}/${springAppName}-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- =======================
+         4. LOG LEVELS
+    ======================= -->
+
+    <!-- Application Logs -->
+    <logger name="com.education.lending" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <!-- Spring Framework (reduce noise) -->
+    <logger name="org.springframework" level="WARN"/>
+
+    <!-- Hibernate / JPA -->
+    <logger name="org.hibernate.SQL" level="DEBUG"/> <!-- Log SQL queries -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/> <!-- Log parameters -->
+
+    <!-- =======================
+         5. ROOT LOGGER
+    ======================= -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

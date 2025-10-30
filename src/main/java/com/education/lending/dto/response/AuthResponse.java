@@ -1,4 +1,4 @@
-package com.education.lending.pojo;
+package com.education.lending.dto.response;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
