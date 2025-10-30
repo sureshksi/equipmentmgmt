@@ -5,55 +5,64 @@ equipment-lending-service
 │
 ├── src/main/java
 │   └── com.education.lending
-│       ├── EquipmentLendingSystemService.java
+│       ├── EquipmentLendingSystemService.java          # Main application entry point
 │       │
-│       ├── config
+│       ├── config/                                     # All framework-related configurations
 │       │   ├── CorsConfig.java
 │       │   ├── OpenAPIConfig.java
-│       │   └── SecurityConfig.java
+│       │   ├── SecurityConfig.java
 │       │
-│       ├── controller
+│       ├── constants/                                  # Central place for constant values
+│       │   └── AppConstants.java
+│       │
+│       ├── controller/                                 # REST Controllers (API layer)
 │       │   ├── AuthController.java
 │       │   ├── BorrowRequestController.java
 │       │   └── EquipmentController.java
 │       │
-│       ├── entity
+│       ├── dto/                                        # DTOs (instead of `pojo`)
+│       │   ├── request/
+│       │   │   ├── AuthRequest.java
+│       │   │   ├── SignupRequest.java
+│       │   └── response/
+│       │       ├── AuthResponse.java
+│       │
+│       ├── entity/                                     # JPA entities
 │       │   ├── BorrowRequest.java
 │       │   ├── Equipment.java
 │       │   └── User.java
 │       │
-│       ├── entity.enums
+│       ├── enums/                                      # Enum types (flattened for clarity)
 │       │   ├── RequestStatus.java
 │       │   └── Role.java
 │       │
-│       ├── pojo
-│       │   ├── AuthRequest.java
-│       │   ├── AuthResponse.java
-│       │   └── SignupRequest.java
+│       ├── exception/                                  # Custom exception handling
 │       │
-│       ├── repository
+│       ├── repository/                                 # Data access layer
 │       │   ├── BorrowRequestRepository.java
 │       │   ├── EquipmentRepository.java
 │       │   └── UserRepository.java
 │       │
-│       ├── security
+│       ├── security/                                   # Authentication and security logic
 │       │   ├── CustomUserDetailsService.java
 │       │   ├── JwtAuthenticationFilter.java
 │       │   ├── JwtAuthEntryPoint.java
 │       │   └── JwtUtil.java
 │       │
-│       ├── service
+│       ├── service/                                    # Interfaces for business logic
 │       │   ├── BorrowService.java
 │       │   ├── EquipmentService.java
-│       │   └── UserService.java
+│       │   ├── UserService.java
 │       │
-│       └── service.impl
-│           ├── BorrowRequestServiceImpl.java
+│       └── service/impl/                               # Implementations of services
+│           ├── BorrowServiceImpl.java
 │           ├── EquipmentServiceImpl.java
-│           └── UserServiceImpl.java
+│           ├── UserServiceImpl.java
 │
-├── src/main/resources
-│   └── application.properties
+├── src/main/resources/
+│   ├── application.properties
+│   ├── logback-spring.xml                              # Centralized logging configuration                                
 │
 ├── JRE System Library [JavaSE-17]
+
 
