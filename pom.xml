@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.education.lending</groupId>
-	<artifactId>equipment-lendign-service</artifactId>
+	<artifactId>equipmentmgmt</artifactId>
 	<version>latest</version>
 	<name>equipment-lendign-service</name>
 	<description>equipment-lendign-service</description>

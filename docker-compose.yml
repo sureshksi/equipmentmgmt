@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  # -------------------
+  # Lending Service DB
+  # -------------------
+  lending-db:
+    image: mysql:9.0
+    container_name: lending-db
+    environment:
+      MYSQL_ROOT_PASSWORD: Welcome@1234
+      MYSQL_DATABASE: lending_system
+    volumes:
+      - lending_mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend
+
+  # -------------------
+  # Lending Service App
+  # -------------------
+  lending-service:
+    build:
+      context: .           # ✅ Build from current folder (where Dockerfile is)
+      dockerfile: Dockerfile
+    container_name: equipment-lending-service
+    depends_on:
+      lending-db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://lending-db:3306/lending_system
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Welcome@1234
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+volumes:
+  lending_mysql_data:
+
+networks:
+  backend:
+    driver: bridge
