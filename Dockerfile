@@ -1,6 +1,5 @@
 # Use OpenJDK base image
-#FROM openjdk:17-jdk-slim  ##deprecated
-FROM eclipse-temurin:17-jdk
+FROM openjdk:26-ea-17-jdk-slim
 
 # Install curl (and clean up afterwards)
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
